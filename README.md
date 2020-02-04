@@ -1,5 +1,5 @@
 # Desafio-Preco-Certo
-Python/Django
+
 Como rodar o projeto?
 Clone esse repositório.
 Crie um virtualenv com Python 3.
