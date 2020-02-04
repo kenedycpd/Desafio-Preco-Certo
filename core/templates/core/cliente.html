@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block body %}
+<br>
+<h2>Cadastro de Clientes</h2>
+<br>
+	<div class="row">
+		<div class="col-md-12">
+			<form method="post">
+				{% csrf_token %}
+				{%bootstrap_form form%}
+				<button class="btn btn-primary" type="submit">Cadastrar</button>
+			</form>
+{% endblock body %}

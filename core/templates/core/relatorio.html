@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block body %}
+<style type="text/css">
+.alert {
+padding: 0 15px;
+margin-bottom: 1rem;
+border: 1px solid transparent;
+border-radius: .25rempx
+}
+.alert p{
+padding: 7px 0 7px;
+}
+.alert.success{
+color: #3c763d;
+background-color: #dff0d8;
+border-color: #d0e9c6;}
+</style>
+<br>
+  <strong><h1>Relatório de Vendas</h1></strong>
+  </div>
+   <br>
+   <table class="table">
+    <thead>                                         
+    <tr>
+    <th>Codigo</th>
+    <th>Cliente</th>
+    <th>Produto</th>
+    <th>P.Venda</th>
+    <th>P.Médio</th>
+    <th>Quantidade</th>
+    <th>Total</th>
+    <th>Data</th>
+    <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    {% for list in relatorio %}
+    <tr>
+    <td>{{list.id}}</td>
+    <td>{{list.cliente}}</td>
+    <td>{{list.produto}}</td>
+    <td>{{list.preco}}</td>
+    <td>{{list.preco_medio}}</td>
+    <td>{{list.quantidade}}</td>
+    <td>{{list.sub_total}}</td>
+    <td>{{list.data}}</td>
+    <td><a href="{% url 'editar' list.id %}" class="btn btn-info">Editar</a></td>
+    </tr>
+    {% empty %}
+    <div class="alert success">
+    <i class="material-icons" style="font-size:40px">sentiment_very_dissatisfied</i><p>
+    Ops! sem relatório de vendas
+    </div>
+    {% endfor %}
+    </tbody>
+    </table>
+    <div class="text-danger">
+    <span class="step-links">
+    {% if relatorio.has_previous %}
+    <a href="?page=1"></a>
+    <a class="text-danger" href="?page={{ relatorio.previous_page_number }}">Anterior</a>
+    {% endif %}
+    <span class="current">
+    Paginas {{ relatorio.number }} de {{ relatorio.paginator.num_pages }}
+    </span>
+    {% if relatorio.has_next %}
+    <a class="text-danger" href="?page={{ relatorio.next_page_number }}">Proximo</a>
+    <a href="?page={{ relatorio.paginator.num_pages }}"></a>
+    {% endif %}
+    </span>
+    </div>
+{% endblock body %}
